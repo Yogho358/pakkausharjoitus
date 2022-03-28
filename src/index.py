@@ -4,6 +4,7 @@ from ui import UI
 def main():
     window = Tk()
     window.title("Pakkausharjoitus")
+    window.geometry("300x200")
     ui = UI(window)
     ui.start()
     window.mainloop()

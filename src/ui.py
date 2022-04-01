@@ -7,12 +7,16 @@ class UI:
 
     def pack_hm(self):
         packed_percentage = pack_hm(filedialog.askopenfilename())
-
         messagebox.showinfo(title = "pakattu", message = f"Pakattu, pakatun tiedoston koko {packed_percentage} prosenttia alkuperäisestä")
+
+    def unpack_hm(self):
+        print("unpack_hm")
 
     def start(self):
         main_label = ttk.Label(master=self._root, text="Pakkausharjoitus")
         
         compress_to_huff_button = ttk.Button(self._root, text="Pakkaa tiedosto huffmanilla", command=self.pack_hm)
+        decompress_hm_button = ttk.Button(self._root, text="Pura Huffman-tiedosto", command=self.unpack_hm)
         main_label.pack()
         compress_to_huff_button.pack()
+        decompress_hm_button.pack()

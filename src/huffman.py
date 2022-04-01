@@ -1,4 +1,5 @@
 import heapq
+from collections import Counter
 
 
 class Node:
@@ -12,7 +13,9 @@ def pack(filename):
     with open(filename) as file:
         read_file = file.read()
         org_length = len(read_file)
-        packed_file = pack_algorithm(read_file)
+        packed = pack_algorithm(read_file)
+        packed_file = packed[1]
+        code_in_string = str(packed[0])
         packed_length = len(packed_file)
         path_parts = filename.split("/")
         new_filename = path_parts[len(path_parts)-1]+".hm"
@@ -21,14 +24,29 @@ def pack(filename):
             new_path = new_path + path_parts[i]+"/"
         new_path = new_path+new_filename
         with open(new_path, "w") as new_file:
+            new_file.write(str(packed[0]))
+        with open(new_path, "ab") as new_file:
             new_file.write(packed_file)
 
-        return org_length/packed_length*100
+        
+
+        return (packed_length+len(code_in_string)*8)/org_length*100
 
 def pack_algorithm(file):
-    return file
+    weights = find_weights(file)
+    codes = encode_tuples_to_binary(weights)
+    code_string = create_code_string(file, codes)
+    bytes = string_to_bytes(code_string)
+    
+    return (codes, bytes)
 
-
+def find_weights(file):
+    characters = Counter(file)
+    res = []
+    total = len(file)
+    for character in characters:
+        res.append((character, characters[character]/total))
+    return res
 
 def encode_tuples_to_binary(tuple_list):
     tree = create_tree(tuple_list)
@@ -36,14 +54,23 @@ def encode_tuples_to_binary(tuple_list):
     create_dictionary(tree, "", res)
     return res
     
+def create_code_string(file, codes):
+    res = ""
+    for character in file:
+        res += codes[character]
+    return res
+
+def string_to_bytes(string):
+    barray = bytearray()
+    for i in range(0, len(string), 8):
+        barray.append(int(string[i:i+8], 2))
+    return bytes(barray)
 
 def create_tree(tuple_list):
     heap = []
 
     for i in range (len(tuple_list)):
         heapq.heappush(heap, (tuple_list[i][1],i,Node(tuple_list[i][0],tuple_list[i][1])))
-
-    print(heap)
 
 
     j = len(tuple_list)

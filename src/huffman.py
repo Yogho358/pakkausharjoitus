@@ -24,11 +24,9 @@ def pack(filename):
             new_path = new_path + path_parts[i]+"/"
         new_path = new_path+new_filename
         with open(new_path, "w") as new_file:
-            new_file.write(str(packed[0]))
+            new_file.write(code_in_string)
         with open(new_path, "ab") as new_file:
             new_file.write(packed_file)
-
-        
 
         return (packed_length+len(code_in_string)*8)/org_length*100
 

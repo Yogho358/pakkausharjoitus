@@ -1,6 +1,6 @@
 import unittest
-import huffman
 import hm_pack
+import hm_unpack
 
 class TestHuffman(unittest.TestCase):
     
@@ -15,3 +15,29 @@ class TestHuffman(unittest.TestCase):
             "E": "011"
             }
         self.assertEqual(res,answer)
+
+    def test_create_code_string(self):
+        codes = {
+            "A": "1",
+            "B": "000",
+            "C": "010",
+            "D": "001",
+            "E": "011"
+            }
+
+        string = "BACCAED"
+        res = hm_pack.create_code_string(string, codes)
+        self.assertEqual(res, "00010100101011001")
+
+    def test_unpacking(self):
+        data = "00010100101011001"
+        codes = {
+            "A": "1",
+            "B": "000",
+            "C": "010",
+            "D": "001",
+            "E": "011"
+            }
+
+        res = hm_unpack.unpack_algorithm(codes, data)
+        self.assertEqual(res, "BACCAED")

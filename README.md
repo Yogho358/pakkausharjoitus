@@ -7,3 +7,5 @@ Harjoitustyö Tietorakenteet ja algritmit -harjoitustyökurssille. Työssä tote
 [Viikkoraportti 1](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/Viikkoraportti%201.md)
 
 [Viikkoraportti 2](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/Viikkoraportti%202.md)
+
+[Viikkoraportti 3](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/Viikkoraportti%203.md)

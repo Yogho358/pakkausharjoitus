@@ -1,5 +1,5 @@
 from tkinter import ttk, filedialog, messagebox
-from huffman import pack as pack_hm
+from huffman import pack as pack_hm, unpack as unpack_hm
 
 class UI:
     def __init__(self, root):
@@ -10,7 +10,7 @@ class UI:
         messagebox.showinfo(title = "pakattu", message = f"Pakattu, pakatun tiedoston koko {packed_percentage} prosenttia alkuperäisestä")
 
     def unpack_hm(self):
-        print("unpack_hm")
+        unpack_hm(filedialog.askopenfilename())
 
     def start(self):
         main_label = ttk.Label(master=self._root, text="Pakkausharjoitus")

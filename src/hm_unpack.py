@@ -1,11 +1,10 @@
 
 
 def unpack_algorithm(codes, data):
-    
+
     res = ""
     character_code = ""
     codes = dict((v, k) for k, v in codes.items())
-
 
     for digit in data:
         character_code += digit

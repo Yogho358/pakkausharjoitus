@@ -2,6 +2,7 @@ import json
 from hm_pack import pack_algorithm
 from hm_unpack import unpack_algorithm
 
+
 def pack(filename):
     with open(filename) as file:
         read_file = file.read()
@@ -29,16 +30,16 @@ def pack(filename):
 
 
 def unpack(filename):
-    
+
     with open(filename, "rb") as file:
         offset = int(file.read(1))
         dict_length = ""
         chunk = file.read(1)
-        
-        while chunk!= b'{' :
+
+        while chunk != b'{':
             dict_length += chunk.decode()
             chunk = file.read(1)
-        
+
         codes = "{"+file.read(int(dict_length)-1).decode()
 
         data_binary = file.read()
@@ -47,8 +48,7 @@ def unpack(filename):
             data = data+f"{x:08b}"
 
         unpacked_data = unpack_algorithm(json.loads(codes), data[offset:])
-       
-        
+
         path_parts = filename.split("/")
         new_filename = path_parts[len(path_parts)-1]+".hm_unpacked"
         new_path = ""
@@ -57,4 +57,3 @@ def unpack(filename):
         new_path = new_path+new_filename
         with open(new_path, "w") as new_file:
             new_file.write(unpacked_data)
-        

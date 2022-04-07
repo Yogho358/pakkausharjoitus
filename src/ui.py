@@ -1,5 +1,6 @@
 from tkinter import ttk, filedialog, messagebox
 from huffman import pack as pack_hm, unpack as unpack_hm
+from lzw import pack as pack_lzw, unpack as unpack_lzw
 
 
 class UI:
@@ -14,6 +15,12 @@ class UI:
     def unpack_hm(self):
         unpack_hm(filedialog.askopenfilename())
 
+    def pack_lzw(self):
+        pack_lzw(filedialog.askopenfilename())
+
+    def unpack_lzw(self):
+        unpack_lzw(filedialog.askopenfilename())
+
     def start(self):
         main_label = ttk.Label(master=self._root, text="Pakkausharjoitus")
 
@@ -21,6 +28,10 @@ class UI:
             self._root, text="Pakkaa tiedosto huffmanilla", command=self.pack_hm)
         decompress_hm_button = ttk.Button(
             self._root, text="Pura Huffman-tiedosto", command=self.unpack_hm)
+        compress_to_lzw_button = ttk.Button(self._root, text="Pakkaa tiedosto LZW:llä", command = self.pack_lzw)
+        decompress_lzw_button = ttk.Button(self._root, text="Pura LZW-tiedosto", command = self.unpack_lzw)
         main_label.pack()
         compress_to_huff_button.pack()
         decompress_hm_button.pack()
+        compress_to_lzw_button.pack()
+        decompress_lzw_button.pack()

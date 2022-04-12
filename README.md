@@ -2,6 +2,8 @@
 
 Harjoitustyö Tietorakenteet ja algritmit -harjoitustyökurssille. Työssä toteutetaan tiedoston pakkaaminen ja purkaminen sekä Huffman- että Lempel Ziv-algoritmilla, ja vertaillaan niitä.
 
+Sovellus käyttää Poetryä riippuvuuksien hallintaan, ennen käyttöä aja poetry install -komento. Sovellus käynnistyy ajamalla src/index.py.
+
 [Määrittelydokumentti](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/maarittely.md)
 
 [Testausdokumentti](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/testaus.md)

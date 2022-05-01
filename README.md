@@ -17,3 +17,5 @@ Sovellus käyttää Poetryä riippuvuuksien hallintaan, ennen käyttöä aja poe
 [Viikkoraportti 4](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/Viikkoraportti%204.md)
 
 [Viikkoraportti 5](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/Viikkoraportti%205.md)
+
+[Viikkoraportti 6](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/Viikkoraportti%206.md)

@@ -1,4 +1,6 @@
-from array import array
+import os
+import pickle
+
 
 
 def create_table():
@@ -17,6 +19,7 @@ def create_unpack_table():
 
 def pack(filename):
     with open(filename) as file:
+        org_size = os.path.getsize(filename)
         content = file.read()
         codes = pack_lzw(content)
         path_parts = filename.split("/")
@@ -25,23 +28,30 @@ def pack(filename):
         for i in range(len(path_parts)-1):
             new_path = new_path + path_parts[i]+"/"
         new_path = new_path+new_filename
+        
+        
         new_file = open(new_path, "wb")
-        code_array = array("i", codes)
-        code_array.tofile(new_file)
+        pickle.dump(codes, new_file)
         new_file.close()
+
+
+        packed_size = os.path.getsize(new_path)
+        return packed_size/org_size*100
+
             
 def unpack(filename):
-    with open(filename, "rb") as file:
-        code_array = array("i")
-        code_array.frombytes(file.read())
-        path_parts = filename.split("/")
-        new_filename = path_parts[len(path_parts)-1]+".lzw_unpacked"
-        new_path = ""
-        for i in range(len(path_parts)-1):
+    file = open(filename, "rb")
+    code_array = pickle.load(file)
+
+    
+    path_parts = filename.split("/")
+    new_filename = path_parts[len(path_parts)-1]+".lzw_unpacked"
+    new_path = ""
+    for i in range(len(path_parts)-1):
             new_path = new_path + path_parts[i]+"/"
-        new_path = new_path+new_filename
-        with open(new_path, "w") as new_file:
-            new_file.write(unpack_lzw(code_array))
+    new_path = new_path+new_filename
+    with open(new_path, "w") as new_file:
+        new_file.write(unpack_lzw(code_array))
 
 def pack_lzw(content):
     table = create_table()

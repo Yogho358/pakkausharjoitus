@@ -1,4 +1,5 @@
 import json
+import os
 from hm_pack import pack_algorithm
 from hm_unpack import unpack_algorithm
 
@@ -6,13 +7,12 @@ from hm_unpack import unpack_algorithm
 def pack(filename):
     with open(filename) as file:
         read_file = file.read()
-        org_length = len(read_file)
+        org_length = os.path.getsize(filename)
         packed = pack_algorithm(read_file)
         offset = packed[2]
         packed_file = packed[1]
         code_in_string = json.dumps(packed[0])
         codes_length = len(code_in_string)
-        packed_length = len(packed_file)
         path_parts = filename.split("/")
         new_filename = path_parts[len(path_parts)-1]+".hm"
         new_path = ""
@@ -26,7 +26,9 @@ def pack(filename):
         with open(new_path, "ab") as new_file:
             new_file.write(packed_file)
 
-        return (packed_length+len(code_in_string))/org_length*100
+        packed_length = os.path.getsize(new_path)
+
+        return packed_length/org_length*100
 
 
 def unpack(filename):

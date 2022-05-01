@@ -7,16 +7,20 @@ class UI:
     def __init__(self, root):
         self._root = root
 
-    def pack_hm(self):
-        packed_percentage = pack_hm(filedialog.askopenfilename())
+    def show_popup(self, packed_percentage):
         messagebox.showinfo(
             title="pakattu", message=f"Pakattu, pakatun tiedoston koko {packed_percentage} prosenttia alkuperäisestä")
+
+    def pack_hm(self):
+        packed_percentage = pack_hm(filedialog.askopenfilename())
+        self.show_popup(packed_percentage)
 
     def unpack_hm(self):
         unpack_hm(filedialog.askopenfilename())
 
     def pack_lzw(self):
-        pack_lzw(filedialog.askopenfilename())
+        packed_percentage = pack_lzw(filedialog.askopenfilename())
+        self.show_popup(packed_percentage)
 
     def unpack_lzw(self):
         unpack_lzw(filedialog.askopenfilename())

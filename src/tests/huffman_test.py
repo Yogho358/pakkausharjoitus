@@ -50,7 +50,6 @@ def test_files(tmp_path:pathlib.Path):
         d = tmp_path / "test"
         d.mkdir()
         file = d/"test.txt"
-        print(file)
         file.write_text("Lorem ipsum dolor sit amet,")
         huffman.pack(f"{tmp_path}/test/test.txt")
         huffman.unpack(f"{tmp_path}/test/test.txt.hm")

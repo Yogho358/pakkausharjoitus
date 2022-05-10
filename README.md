@@ -8,6 +8,8 @@ Sovellus käyttää Poetryä riippuvuuksien hallintaan, ennen käyttöä aja poe
 
 [Testausdokumentti](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/testaus.md)
 
+[Toteutusdokumentti](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/toteutus.md)
+
 [Viikkoraportti 1](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/Viikkoraportti%201.md)
 
 [Viikkoraportti 2](https://github.com/Yogho358/pakkausharjoitus/blob/main/documents/Viikkoraportti%202.md)
